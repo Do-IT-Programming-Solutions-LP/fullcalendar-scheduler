@@ -1,5 +1,5 @@
 /*!
- * FullCalendar Scheduler v1.9.4
+ * FullCalendar Scheduler v1.9.5
  * Docs & License: https://fullcalendar.io/scheduler/
  * (c) 2018 Adam Shaw
  */
@@ -12,7 +12,7 @@
 		var a = typeof exports === 'object' ? factory(require("fullcalendar"), require("jquery"), require("moment")) : factory(root["FullCalendar"], root["jQuery"], root["moment"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_15__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -113,10 +113,7 @@ exports.__extends = function (d, b) {
 module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -140,9 +137,7 @@ exports.default = ResourceComponentFootprint;
 
 
 /***/ }),
-/* 7 */,
-/* 8 */,
-/* 9 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -274,10 +269,12 @@ var ResourceViewMixin = /** @class */ (function (_super) {
     // Resource Change Handling
     // ----------------------------------------------------------------------------------------------
     ResourceViewMixin.prototype.handleResourceAdd = function (resource) {
-        this.requestResourceRender(resource);
+        if (!this.renderPaused)
+            this.requestResourceRender(resource);
     };
     ResourceViewMixin.prototype.handleResourceRemove = function (resource) {
-        this.requestResourceUnrender(resource);
+        if (!this.renderPaused)
+            this.requestResourceUnrender(resource);
     };
     // Resource Rendering
     // ----------------------------------------------------------------------------------------------
@@ -392,18 +389,15 @@ ResourceViewMixin.prototype.isResourcesRendered = false;
 
 
 /***/ }),
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceDayTableMixin_1 = __webpack_require__(21);
-var ResourceComponentFootprint_1 = __webpack_require__(6);
+var ResourceDayTableMixin_1 = __webpack_require__(13);
+var ResourceComponentFootprint_1 = __webpack_require__(3);
 var ResourceDayGrid = /** @class */ (function (_super) {
     tslib_1.__extends(ResourceDayGrid, _super);
     function ResourceDayGrid(view) {
@@ -462,24 +456,24 @@ ResourceDayTableMixin_1.default.mixInto(ResourceDayGrid);
 
 
 /***/ }),
-/* 14 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
-var moment = __webpack_require__(15);
+var moment = __webpack_require__(7);
 var fullcalendar_1 = __webpack_require__(0);
-var ClippedScroller_1 = __webpack_require__(24);
-var ScrollerCanvas_1 = __webpack_require__(25);
-var ScrollJoiner_1 = __webpack_require__(16);
-var ScrollFollower_1 = __webpack_require__(26);
-var TimelineEventRenderer_1 = __webpack_require__(17);
-var TimelineFillRenderer_1 = __webpack_require__(28);
-var TimelineHelperRenderer_1 = __webpack_require__(29);
-var TimelineEventDragging_1 = __webpack_require__(40);
-var TimelineEventResizing_1 = __webpack_require__(41);
-var TimelineView_defaults_1 = __webpack_require__(42);
+var ClippedScroller_1 = __webpack_require__(16);
+var ScrollerCanvas_1 = __webpack_require__(17);
+var ScrollJoiner_1 = __webpack_require__(8);
+var ScrollFollower_1 = __webpack_require__(18);
+var TimelineEventRenderer_1 = __webpack_require__(9);
+var TimelineFillRenderer_1 = __webpack_require__(20);
+var TimelineHelperRenderer_1 = __webpack_require__(21);
+var TimelineEventDragging_1 = __webpack_require__(30);
+var TimelineEventResizing_1 = __webpack_require__(31);
+var TimelineView_defaults_1 = __webpack_require__(32);
 var TimelineView = /** @class */ (function (_super) {
     tslib_1.__extends(TimelineView, _super);
     function TimelineView(calendar, viewSpec) {
@@ -1229,13 +1223,13 @@ fullcalendar_1.StandardInteractionsMixin.mixInto(TimelineView);
 
 
 /***/ }),
-/* 15 */
+/* 7 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ }),
-/* 16 */
+/* 8 */
 /***/ (function(module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1336,13 +1330,13 @@ exports.default = ScrollJoiner;
 
 
 /***/ }),
-/* 17 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var fullcalendar_1 = __webpack_require__(0);
-var ScrollFollowerSprite_1 = __webpack_require__(27);
+var ScrollFollowerSprite_1 = __webpack_require__(19);
 var TimelineEventRenderer = /** @class */ (function (_super) {
     tslib_1.__extends(TimelineEventRenderer, _super);
     function TimelineEventRenderer() {
@@ -1514,14 +1508,14 @@ function timeRowSegsCollide(seg0, seg1) {
 
 
 /***/ }),
-/* 18 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var util_1 = __webpack_require__(44);
+var util_1 = __webpack_require__(34);
 /*
 An abstract node in a row-hierarchy tree.
 May be a self-contained single row, a row with subrows,
@@ -1958,7 +1952,7 @@ RowParent.prototype.hasOwnRow = false;
 
 
 /***/ }),
-/* 19 */
+/* 11 */
 /***/ (function(module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1988,15 +1982,15 @@ exports.default = Resource;
 
 
 /***/ }),
-/* 20 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceViewMixin_1 = __webpack_require__(9);
-var ResourceDayGrid_1 = __webpack_require__(13);
-var ResourceTimeGrid_1 = __webpack_require__(38);
+var ResourceViewMixin_1 = __webpack_require__(4);
+var ResourceDayGrid_1 = __webpack_require__(5);
+var ResourceTimeGrid_1 = __webpack_require__(28);
 var ResourceAgendaView = /** @class */ (function (_super) {
     tslib_1.__extends(ResourceAgendaView, _super);
     function ResourceAgendaView(calendar, viewSpec) {
@@ -2013,14 +2007,14 @@ ResourceViewMixin_1.default.mixInto(ResourceAgendaView);
 
 
 /***/ }),
-/* 21 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceComponentFootprint_1 = __webpack_require__(6);
+var ResourceComponentFootprint_1 = __webpack_require__(3);
 /*
 Requirements:
 - must be a Grid
@@ -2313,14 +2307,14 @@ ResourceDayTableMixin.prototype.allowCrossResource = false;
 
 
 /***/ }),
-/* 22 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceViewMixin_1 = __webpack_require__(9);
-var ResourceDayGrid_1 = __webpack_require__(13);
+var ResourceViewMixin_1 = __webpack_require__(4);
+var ResourceDayGrid_1 = __webpack_require__(5);
 var ResourceBasicView = /** @class */ (function (_super) {
     tslib_1.__extends(ResourceBasicView, _super);
     function ResourceBasicView(calendar, viewSpec) {
@@ -2336,14 +2330,14 @@ ResourceViewMixin_1.default.mixInto(ResourceBasicView);
 
 
 /***/ }),
-/* 23 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceViewMixin_1 = __webpack_require__(9);
-var ResourceDayGrid_1 = __webpack_require__(13);
+var ResourceViewMixin_1 = __webpack_require__(4);
+var ResourceDayGrid_1 = __webpack_require__(5);
 var ResourceMonthView = /** @class */ (function (_super) {
     tslib_1.__extends(ResourceMonthView, _super);
     function ResourceMonthView(calendar, viewSpec) {
@@ -2359,14 +2353,14 @@ ResourceViewMixin_1.default.mixInto(ResourceMonthView);
 
 
 /***/ }),
-/* 24 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var EnhancedScroller_1 = __webpack_require__(39);
+var EnhancedScroller_1 = __webpack_require__(29);
 /*
 A Scroller, but with a wrapping div that allows "clipping" away of native scrollbars,
 giving the appearance that there are no scrollbars.
@@ -2441,7 +2435,7 @@ exports.default = ClippedScroller;
 
 
 /***/ }),
-/* 25 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -2518,13 +2512,13 @@ exports.default = ScrollerCanvas;
 
 
 /***/ }),
-/* 26 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var ScrollFollowerSprite_1 = __webpack_require__(27);
+var ScrollFollowerSprite_1 = __webpack_require__(19);
 var ScrollFollower = /** @class */ (function () {
     function ScrollFollower(scroller, allowPointerEvents) {
         if (allowPointerEvents === void 0) { allowPointerEvents = false; }
@@ -2645,7 +2639,7 @@ exports.default = ScrollFollower;
 
 
 /***/ }),
-/* 27 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -2908,7 +2902,7 @@ function joinRects(rect1, rect2) {
 
 
 /***/ }),
-/* 28 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -2954,7 +2948,7 @@ exports.default = TimelineFillRenderer;
 
 
 /***/ }),
-/* 29 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -3003,24 +2997,24 @@ exports.default = TimelineHelperRenderer;
 
 
 /***/ }),
-/* 30 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var ScrollJoiner_1 = __webpack_require__(16);
-var ResourceComponentFootprint_1 = __webpack_require__(6);
-var ResourceViewMixin_1 = __webpack_require__(9);
-var TimelineView_1 = __webpack_require__(14);
-var Spreadsheet_1 = __webpack_require__(43);
-var ResourceTimelineEventRenderer_1 = __webpack_require__(45);
-var RowParent_1 = __webpack_require__(18);
-var ResourceRow_1 = __webpack_require__(46);
-var HRowGroup_1 = __webpack_require__(47);
-var VRowGroup_1 = __webpack_require__(31);
-var EventRow_1 = __webpack_require__(33);
+var ScrollJoiner_1 = __webpack_require__(8);
+var ResourceComponentFootprint_1 = __webpack_require__(3);
+var ResourceViewMixin_1 = __webpack_require__(4);
+var TimelineView_1 = __webpack_require__(6);
+var Spreadsheet_1 = __webpack_require__(33);
+var ResourceTimelineEventRenderer_1 = __webpack_require__(35);
+var RowParent_1 = __webpack_require__(10);
+var ResourceRow_1 = __webpack_require__(36);
+var HRowGroup_1 = __webpack_require__(37);
+var VRowGroup_1 = __webpack_require__(23);
+var EventRow_1 = __webpack_require__(25);
 var ResourceTimelineView = /** @class */ (function (_super) {
     tslib_1.__extends(ResourceTimelineView, _super);
     function ResourceTimelineView(calendar, viewSpec) {
@@ -3720,13 +3714,13 @@ function computeIsChildrenVisible(current) {
 
 
 /***/ }),
-/* 31 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
-var RowGroup_1 = __webpack_require__(32);
+var RowGroup_1 = __webpack_require__(24);
 /*
 A row grouping that renders as a tall multi-cell vertical span in the "spreadsheet" area
 */
@@ -3792,13 +3786,13 @@ exports.default = VRowGroup;
 
 
 /***/ }),
-/* 32 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
-var RowParent_1 = __webpack_require__(18);
+var RowParent_1 = __webpack_require__(10);
 /*
 An abstract node in a row-hierarchy tree that contains other nodes.
 Will have some sort of rendered label indicating the grouping,
@@ -3852,16 +3846,16 @@ exports.default = RowGroup;
 
 
 /***/ }),
-/* 33 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var fullcalendar_1 = __webpack_require__(0);
-var RowParent_1 = __webpack_require__(18);
-var TimelineFillRenderer_1 = __webpack_require__(28);
-var TimelineEventRenderer_1 = __webpack_require__(17);
-var TimelineHelperRenderer_1 = __webpack_require__(29);
+var RowParent_1 = __webpack_require__(10);
+var TimelineFillRenderer_1 = __webpack_require__(20);
+var TimelineEventRenderer_1 = __webpack_require__(9);
+var TimelineHelperRenderer_1 = __webpack_require__(21);
 var EventRow = /** @class */ (function (_super) {
     tslib_1.__extends(EventRow, _super);
     function EventRow() {
@@ -3890,35 +3884,33 @@ EventRow.prototype.hasOwnRow = true;
 
 
 /***/ }),
-/* 34 */,
-/* 35 */,
-/* 36 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var exportHooks = __webpack_require__(0);
 // imports solely for side-effects
-__webpack_require__(37);
+__webpack_require__(27);
+__webpack_require__(38);
+__webpack_require__(40);
+__webpack_require__(41);
+__webpack_require__(43);
+__webpack_require__(44);
+__webpack_require__(45);
+__webpack_require__(46);
+__webpack_require__(47);
 __webpack_require__(48);
+__webpack_require__(49);
 __webpack_require__(50);
 __webpack_require__(51);
+__webpack_require__(52);
 __webpack_require__(53);
 __webpack_require__(54);
 __webpack_require__(55);
 __webpack_require__(56);
 __webpack_require__(57);
 __webpack_require__(58);
-__webpack_require__(59);
-__webpack_require__(60);
-__webpack_require__(61);
-__webpack_require__(62);
-__webpack_require__(63);
-__webpack_require__(64);
-__webpack_require__(65);
-__webpack_require__(66);
-__webpack_require__(67);
-__webpack_require__(68);
-var schedulerVersion = '1.9.4';
+var schedulerVersion = '1.9.5';
 exportHooks.schedulerVersion = schedulerVersion;
 /*
 When the required internal version is upped,
@@ -3934,16 +3926,16 @@ if (exportHooks.internalApiVersion !== 12) {
 
 
 /***/ }),
-/* 37 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var exportHooks = __webpack_require__(0);
-var ResourceAgendaView_1 = __webpack_require__(20);
-var ResourceBasicView_1 = __webpack_require__(22);
-var ResourceMonthView_1 = __webpack_require__(23);
-var TimelineView_1 = __webpack_require__(14);
-var ResourceTimelineView_1 = __webpack_require__(30);
+var ResourceAgendaView_1 = __webpack_require__(12);
+var ResourceBasicView_1 = __webpack_require__(14);
+var ResourceMonthView_1 = __webpack_require__(15);
+var TimelineView_1 = __webpack_require__(6);
+var ResourceTimelineView_1 = __webpack_require__(22);
 // TODO: find a better way
 exportHooks.ResourceAgendaView = ResourceAgendaView_1.default;
 exportHooks.ResourceBasicView = ResourceBasicView_1.default;
@@ -3953,15 +3945,15 @@ exportHooks.ResourceTimelineView = ResourceTimelineView_1.default;
 
 
 /***/ }),
-/* 38 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceDayTableMixin_1 = __webpack_require__(21);
-var ResourceComponentFootprint_1 = __webpack_require__(6);
+var ResourceDayTableMixin_1 = __webpack_require__(13);
+var ResourceComponentFootprint_1 = __webpack_require__(3);
 var ResourceTimeGrid = /** @class */ (function (_super) {
     tslib_1.__extends(ResourceTimeGrid, _super);
     function ResourceTimeGrid(view) {
@@ -4011,7 +4003,7 @@ ResourceDayTableMixin_1.default.mixInto(ResourceTimeGrid);
 
 
 /***/ }),
-/* 39 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -4237,7 +4229,7 @@ $(function () {
 
 
 /***/ }),
-/* 40 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -4269,7 +4261,7 @@ exports.default = TimelineEventDragging;
 
 
 /***/ }),
-/* 41 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -4301,12 +4293,12 @@ exports.default = TimelineEventResizing;
 
 
 /***/ }),
-/* 42 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var $ = __webpack_require__(2);
-var moment = __webpack_require__(15);
+var moment = __webpack_require__(7);
 var core = __webpack_require__(0);
 var MIN_AUTO_LABELS = 18; // more than `12` months but less that `24` hours
 var MAX_AUTO_SLOTS_PER_LABEL = 6; // allows 6 10-min slots in an hour
@@ -4560,17 +4552,17 @@ function computeHeaderFormats(timelineView) {
 
 
 /***/ }),
-/* 43 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var ClippedScroller_1 = __webpack_require__(24);
-var ScrollerCanvas_1 = __webpack_require__(25);
-var ScrollJoiner_1 = __webpack_require__(16);
-var ScrollFollower_1 = __webpack_require__(26);
-var VRowGroup_1 = __webpack_require__(31);
+var ClippedScroller_1 = __webpack_require__(16);
+var ScrollerCanvas_1 = __webpack_require__(17);
+var ScrollJoiner_1 = __webpack_require__(8);
+var ScrollFollower_1 = __webpack_require__(18);
+var VRowGroup_1 = __webpack_require__(23);
 var COL_MIN_WIDTH = 30;
 var Spreadsheet = /** @class */ (function () {
     function Spreadsheet(view) {
@@ -4791,7 +4783,7 @@ exports.default = Spreadsheet;
 
 
 /***/ }),
-/* 44 */
+/* 34 */
 /***/ (function(module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -4806,12 +4798,12 @@ exports.getOwnCells = getOwnCells;
 
 
 /***/ }),
-/* 45 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var TimelineEventRenderer_1 = __webpack_require__(17);
+var TimelineEventRenderer_1 = __webpack_require__(9);
 var ResourceTimelineEventRenderer = /** @class */ (function (_super) {
     tslib_1.__extends(ResourceTimelineEventRenderer, _super);
     function ResourceTimelineEventRenderer() {
@@ -4830,14 +4822,14 @@ exports.default = ResourceTimelineEventRenderer;
 
 
 /***/ }),
-/* 46 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var EventRow_1 = __webpack_require__(33);
+var EventRow_1 = __webpack_require__(25);
 /*
 A row that renders information about a particular resource, as well as it events (handled by superclass)
 */
@@ -4962,13 +4954,13 @@ exports.default = ResourceRow;
 
 
 /***/ }),
-/* 47 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var $ = __webpack_require__(2);
-var RowGroup_1 = __webpack_require__(32);
+var RowGroup_1 = __webpack_require__(24);
 /*
 A row grouping that renders as a single solid row that spans width-wise (like a horizontal rule)
 */
@@ -5011,15 +5003,15 @@ HRowGroup.prototype.hasOwnRow = true; // actually renders its own row and takes 
 
 
 /***/ }),
-/* 48 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var Resource_1 = __webpack_require__(19);
-var ResourceManager_1 = __webpack_require__(49);
-var ResourceComponentFootprint_1 = __webpack_require__(6);
+var Resource_1 = __webpack_require__(11);
+var ResourceManager_1 = __webpack_require__(39);
+var ResourceComponentFootprint_1 = __webpack_require__(3);
 // NOTE: for public methods, always be sure of the return value. for chaining
 var origMethods = {
     constructed: fullcalendar_1.Calendar.prototype.constructed,
@@ -5153,7 +5145,7 @@ fullcalendar_1.Calendar.prototype.getEventResources = function (idOrEvent) {
 
 
 /***/ }),
-/* 49 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -5448,14 +5440,14 @@ fullcalendar_1.EmitterMixin.mixInto(ResourceManager);
 
 
 /***/ }),
-/* 50 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var Resource_1 = __webpack_require__(19);
-var ResourceComponentFootprint_1 = __webpack_require__(6);
+var Resource_1 = __webpack_require__(11);
+var ResourceComponentFootprint_1 = __webpack_require__(3);
 var origMethods = {
     getPeerEventInstances: fullcalendar_1.Constraints.prototype.getPeerEventInstances,
     isFootprintAllowed: fullcalendar_1.Constraints.prototype.isFootprintAllowed,
@@ -5587,12 +5579,12 @@ fullcalendar_1.Constraints.prototype.parseFootprints = function (input) {
 
 
 /***/ }),
-/* 51 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var fullcalendar_1 = __webpack_require__(0);
-var license_1 = __webpack_require__(52);
+var license_1 = __webpack_require__(42);
 // pre-monkeypatch methods
 var origMethods = {
     setElement: fullcalendar_1.View.prototype.setElement,
@@ -5702,6 +5694,8 @@ fullcalendar_1.View.prototype.unsetResources = function () {
 };
 // eventsPayload is optional
 fullcalendar_1.View.prototype.resetResources = function (resources, eventsPayload) {
+    if (this.renderPaused)
+        return;
     this.startBatchRender();
     this.unsetResources();
     this.setResources(resources, eventsPayload);
@@ -5788,14 +5782,14 @@ function _filterResourcesWithEvents(sourceResources, resourceIdHits) {
 
 
 /***/ }),
-/* 52 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var $ = __webpack_require__(2);
-var moment = __webpack_require__(15);
+var moment = __webpack_require__(7);
 var exportHooks = __webpack_require__(0);
-var RELEASE_DATE = '2018-03-28'; // for Scheduler
+var RELEASE_DATE = '2018-09-28'; // for Scheduler
 var UPGRADE_WINDOW = { years: 1, weeks: 1 }; // 1 week leeway, for tz shift reasons too
 var LICENSE_INFO_URL = 'http://fullcalendar.io/scheduler/license/';
 var PRESET_LICENSE_KEYS = [
@@ -5847,12 +5841,12 @@ exports.detectWarningInContainer = detectWarningInContainer;
 
 
 /***/ }),
-/* 53 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceComponentFootprint_1 = __webpack_require__(6);
+var ResourceComponentFootprint_1 = __webpack_require__(3);
 // references to pre-monkeypatched methods
 var origMethods = {
     eventRangeToEventFootprints: fullcalendar_1.DateComponent.prototype.eventRangeToEventFootprints
@@ -5896,7 +5890,7 @@ fullcalendar_1.DateComponent.prototype.unrenderResource = function (resource) {
 
 
 /***/ }),
-/* 54 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -5930,7 +5924,7 @@ fullcalendar_1.InteractiveDateComponent.prototype.isEventDefResourceEditable = f
 
 
 /***/ }),
-/* 55 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -5977,12 +5971,12 @@ function queryResourceObject(eventRenderer, id) {
 
 
 /***/ }),
-/* 56 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceComponentFootprint_1 = __webpack_require__(6);
+var ResourceComponentFootprint_1 = __webpack_require__(3);
 // references to pre-monkeypatched methods
 var origMethods = {
     computeSelectionFootprint: fullcalendar_1.DateSelecting.prototype.computeSelectionFootprint
@@ -6005,7 +5999,7 @@ fullcalendar_1.DateSelecting.prototype.computeSelectionFootprint = function (sta
 
 
 /***/ }),
-/* 57 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -6038,7 +6032,7 @@ fullcalendar_1.EventDragging.prototype.computeEventDropMutation = function (star
 
 
 /***/ }),
-/* 58 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -6071,7 +6065,7 @@ fullcalendar_1.EventResizing.prototype.computeEventEndResizeMutation = function 
 
 
 /***/ }),
-/* 59 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -6090,7 +6084,7 @@ fullcalendar_1.ExternalDropping.prototype.computeExternalDrop = function (compon
 
 
 /***/ }),
-/* 60 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -6101,13 +6095,13 @@ fullcalendar_1.EventSource.prototype.standardPropMap.resourceEditable = true; //
 
 
 /***/ }),
-/* 61 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var $ = __webpack_require__(2);
 var fullcalendar_1 = __webpack_require__(0);
-var Resource_1 = __webpack_require__(19);
+var Resource_1 = __webpack_require__(11);
 var origMethods = {
     applyMiscProps: fullcalendar_1.EventDef.prototype.applyMiscProps,
     clone: fullcalendar_1.EventDef.prototype.clone,
@@ -6194,7 +6188,7 @@ fullcalendar_1.EventDef.prototype.toLegacy = function () {
 
 
 /***/ }),
-/* 62 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -6221,12 +6215,12 @@ fullcalendar_1.EventDefMutation.prototype.mutateSingle = function (eventDef) {
 
 
 /***/ }),
-/* 63 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var fullcalendar_1 = __webpack_require__(0);
-var TimelineView_1 = __webpack_require__(14);
+var TimelineView_1 = __webpack_require__(6);
 fullcalendar_1.defineView('timeline', {
     class: TimelineView_1.default,
     defaults: {
@@ -6252,24 +6246,24 @@ fullcalendar_1.defineView('timelineYear', {
 
 
 /***/ }),
-/* 64 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceTimelineView_1 = __webpack_require__(30);
+var ResourceTimelineView_1 = __webpack_require__(22);
 fullcalendar_1.getViewConfig('timeline').resourceClass = ResourceTimelineView_1.default;
 fullcalendar_1.Calendar.defaults.resourcesInitiallyExpanded = true;
 
 
 /***/ }),
-/* 65 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceBasicView_1 = __webpack_require__(22);
-var ResourceMonthView_1 = __webpack_require__(23);
+var ResourceBasicView_1 = __webpack_require__(14);
+var ResourceMonthView_1 = __webpack_require__(15);
 // TODO: make more DRY (with agenda's config too)
 fullcalendar_1.getViewConfig('basic').queryResourceClass = function (viewSpec) {
     var explicitGrouping = viewSpec.options.groupByResource ||
@@ -6294,12 +6288,12 @@ fullcalendar_1.getViewConfig('month').queryResourceClass = function (viewSpec) {
 
 
 /***/ }),
-/* 66 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var fullcalendar_1 = __webpack_require__(0);
-var ResourceAgendaView_1 = __webpack_require__(20);
+var ResourceAgendaView_1 = __webpack_require__(12);
 /*
 TODO: make more DRY, with basic's config
 */
@@ -6320,14 +6314,14 @@ fullcalendar_1.getViewConfig('agenda').queryResourceClass = function (viewSpec) 
 
 
 /***/ }),
-/* 67 */
+/* 57 */
 /***/ (function(module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 
 
 /***/ }),
-/* 68 */
+/* 58 */
 /***/ (function(module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });

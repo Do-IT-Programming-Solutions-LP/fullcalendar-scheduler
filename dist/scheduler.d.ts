@@ -7,6 +7,7 @@ declare module 'fullcalendar-scheduler/src/ResourceViewMixin' {
 	export default class ResourceViewMixin extends Mixin implements ResourceViewInterface {
 	    resourceTextFunc: any;
 	    isResourcesRendered: boolean;
+	    renderPaused: boolean;
 	    calendar: any;
 	    canHandleSpecificResources: boolean;
 	    static mixInto(destClass: any): void;
