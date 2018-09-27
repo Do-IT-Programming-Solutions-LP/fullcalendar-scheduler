@@ -172,6 +172,8 @@ View.prototype.unsetResources = function() {
 
 // eventsPayload is optional
 View.prototype.resetResources = function(resources, eventsPayload) {
+  if (this.renderPaused) return
+
   this.startBatchRender()
   this.unsetResources()
   this.setResources(resources, eventsPayload)

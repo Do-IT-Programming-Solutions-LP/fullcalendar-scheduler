@@ -12,6 +12,7 @@ export default class ResourceViewMixin extends Mixin implements ResourceViewInte
 
   resourceTextFunc: any
   isResourcesRendered: boolean // (initialized after class)
+  renderPaused: boolean
 
   // for View
   calendar: any
@@ -169,12 +170,12 @@ export default class ResourceViewMixin extends Mixin implements ResourceViewInte
 
 
   handleResourceAdd(resource) {
-    this.requestResourceRender(resource)
+    if (!this.renderPaused) this.requestResourceRender(resource)
   }
 
 
   handleResourceRemove(resource) {
-    this.requestResourceUnrender(resource)
+    if (!this.renderPaused) this.requestResourceUnrender(resource)
   }
 
 
